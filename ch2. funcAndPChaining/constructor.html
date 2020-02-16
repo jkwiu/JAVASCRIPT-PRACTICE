@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생성자 테스트</title>
+    <script>
+
+        function sayHello(arg){
+            if(!(this instanceof arguments.callee)){
+                return new arguments.callee(arg);
+            }
+            this.value = arg;
+        }
+
+    </script>
+</head>
+<body>
+    <select name="at" id="at" style="width:100px" class="hello">
+        <option id="select" value="select">선택</option>
+        <option id="hi" value="hi">HI</option>
+        <option id="bye" value="bye">BYE</option>
+    </select>
+</body>
+</html>
