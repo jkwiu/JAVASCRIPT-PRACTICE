@@ -48,7 +48,7 @@ var mine = new Student3();
 mine.setName('mine');
 console.log(mine.getName());
 // 즉시 실행함수와 클로저를 활용한 최적화 상속 코드
-var inherit = function(Parent, Chile){
+var inherit = function(Parent, Child){
     var F = function(){};
     return function(Parent, Child){
         F.prototype = Parent.prototype;
