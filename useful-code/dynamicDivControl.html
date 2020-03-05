@@ -1,0 +1,238 @@
+<!-- 동적으로 데이터를 받아서 데이터의 길이에 따라 div를 추가 삭제하여 테이블을 표시하는 코드 -->
+
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Dynamic DIV Control</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script>
+
+        // 동적 div Object
+        // 동적으로 div를 생성, 제거해준다.
+        var DynamicDiv = function(divName){
+            this.div = divName;
+            var divElement = '';
+        }
+
+        Function.prototype.method = function(name, func){
+            if(!this.prototype[name]){
+                this.prototype[name] = func;
+            }
+        }
+
+        DynamicDiv.method('appendDiv', function(formName, innerFormName, divName){
+            this.divElement = divName;
+            $('#' + formName).append('<div id='+innerFormName+'></div>');
+            $('#' + innerFormName).append(this.divElement);
+        });
+        DynamicDiv.method('removeDiv', function(innerFormName){
+            // append된 detailForm 내부의 div form을 삭제
+            $('#'+innerFormName).remove();
+        });
+        var customerInfoObj = new DynamicDiv('customerInfo');
+        var journeyInfoObj = new DynamicDiv('journeyInfo');
+        var customerDetailDiv = (function(){
+            var cDiv = 
+                '<div class="section">'+
+                    '<h3>Detail</h3>'+
+                    '<h4>고객 인적사항</h4>'+
+                    '<div class="table-box">'+
+                        '<table class="tbl-Form" summary="성별, 성, 이름, 스카이패스 회원번호, 국가/지역, 전화번호, 우편번호, 이메일, 상세주소">'+
+                            '<caption>상세내역</caption>'+
+                            '<colgroup><col width="120px"/><col width="*"/><col width="80px"/><col width="*"/><col width="80px"/><col width="*"/></colgroup>'+
+                            '<tr>'+
+                                '<th scope="row"><label for="">성별</label></th>'+
+                                '<td><span></span></td>'+
+                                '<th scope="row"><label for="">성</label></th>'+
+                                '<td><span></span></td>'+
+                                '<th scope="row"><label for="">이름</label></th>'+
+                                '<td><span></span></td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<th scope="row"><label for="">스카이패스 회원번호</label></th>'+
+                                '<td><span></span></td>'+
+                                '<th scope="row"><label for="">국가/지역</label></th>'+
+                                '<td><span></span></td>'+
+                                '<th scope="row"><label for="">전화번호</label></th>'+
+                                '<td><span></span></td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<th scope="row"><label for="">우편번호</label></th>'+
+                                '<td><span></span></td>'+
+                                '<th scope="row"><label for="">이메일</label></th>'+
+                                '<td><span></span></td>'+
+                                '<th scope="row"><label for=""></label></th>'+
+                                '<td></td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<th scope="row"><label for="">상세주소</label></th>'+
+                                '<td scope="row" colspan="5"><span></span></td>'+
+                            '</tr>'+
+                        '</table>'+
+                    '</div>'+
+                '</div>';
+            return (function(){
+                return cDiv;
+            });
+        })();
+
+        var journeyDetailDiv = (function(){
+            var jDiv = 
+                '<div class="section">'+
+                    '<h4>탑승 정보</h4>'+
+                    '<div class="table-box grid-wrap">'+
+                        '<table class="tbl-List" summary="여정, 출발지, 도착지, 항공편명, 도착일, 탑승클래스">'+
+                            '<caption>탑승 정보</caption>'+
+                            '<thead>'+
+                                '<tr>'+
+                                    '<th>여정</th>'+
+                                    '<th>출발지</th>'+
+                                    '<th>도착지</th>'+
+                                    '<th>항공편명</th>'+
+                                    '<th>도착일</th>'+
+                                    '<th>탑승클래스</th>'+
+                                '</tr>'+
+                            '</thead>'+
+                            '<tbody>'+
+                                '<tr>	'+
+                                    '<td>여정1</td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                '</tr>'+
+                                '<tr id="journey2">	'+
+                                    '<td>여정2</td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                '</tr>'+
+                                '<tr id="journey3">	'+
+                                    '<td>여정3</td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                    '<td><span></span></td>'+
+                                '</tr>'+
+                            '</tbody>'+
+                        '</table>'+
+                    '</div>'+
+                '</div>';
+            return (function(){
+                return jDiv;
+            });
+        })();
+
+        var bagDetailDiv = (function(){
+            var bDiv = 
+            '<div class="section">'+
+            '    <h4>파손 수하물 정보 (1)</h4>'+
+            '    <div class="table-box">'+
+            '        <table class="tbl-Form" summary="수화물표 번호, 수화물표 사진, 가방종류, 사이즈, 가방브랜드, 구입년월, 구입가격, 기타 추가사항, 파손 가방 구매 영수증, 가방 전면 사진, 파손상세, 파손부위, 파손항목, 파손 부위 사진">'+
+            '            <caption>파손 수하물 정보(1)</caption>'+
+            '            <colgroup><col width="120px"/><col width="*"/><col width="80px"/><col width="*"/><col width="80px"/><col width="*"/></colgroup>'+
+            '            <tr>'+
+            '                <th scope="row"><label for="">수화물표 번호</label></th>'+
+            '                <td colspan="5"><span></span></td>'+
+            '            </tr>'+
+            '            <tr>'+
+            '                <th scope="row"><label for="">수화물표 사진</label></th>'+
+            '                <td colspan="5"><span></span></td>'+
+            '            </tr>'+
+            '            <tr>'+
+            '                <th scope="row"><label for="">가방종류</label></th>'+
+            '                    <td><span></span></td>'+
+            '                    <th scope="row"><label for="">사이즈</label></th>'+
+            '                    <td><span></span></td>'+
+            '                    <th scope="row"><label for="">가방브랜드</label></th>'+
+            '                    <td><span></span></td>'+
+            '                </tr>'+
+            '                <tr>'+
+            '                    <th scope="row"><label for="">구입년월</label></th>'+
+            '                    <td><span></span></td>'+
+            '                    <th scope="row"><label for="">구입가격</label></th>'+
+            '                    <td><span></span></td>'+
+            '                    <th scope="row"><label for=""></label></th>'+
+            '                    <td></td>'+
+            '                </tr>'+
+            '                <tr>'+
+            '                    <th scope="row"><label for="">기타 추가사항</label></th>'+
+            '                    <td colspan="5"><span></span></td>'+
+            '                </tr>'+
+            '                <tr>'+
+            '                    <th class="center" colspan="3">파손 가방 구매 영수증</th>'+
+            '                    <th class="center" colspan="3">가방 전면 사진</th>'+
+            '                </tr>'+
+            '                <tr>'+
+            '                    <td class="center" colspan="3"><span></span></td>'+
+            '                    <td class="center" colspan="3"><span></span></td>'+
+            '                </tr>'+
+            '                <tr>'+
+            '                    <th scope="row"><label for="">파손상세</label></th>'+
+            '                    <td><span></span></td>'+
+            '                    <th scope="row"><label for="">파손부위</label></th>'+
+            '                    <td><span></span></td>'+
+            '                    <th scope="row"><label for="">파손항목</label></th>'+
+            '                    <td><span></span></td>'+
+            '                </tr>'+
+            '                <tr>'+
+            '                    <th class="center" colspan="6">파손 부위 사진</th>'+
+            '                </tr>'+
+            '                <tr>'+
+            '                    <td colspan="6"><span></span><span></span></td>'+
+            '                </tr>'+
+            '            </table>'+
+            '        </div>'+
+            '    </div>';
+
+            return (function(){
+                return bDiv;
+            });
+        })();
+            
+       
+
+        $(function(){
+            var detailDiv = '';
+            var customerDiv = customerDetailDiv();
+            var journeyDiv = journeyDetailDiv();
+            var bagDiv = bagDetailDiv();
+
+            var chkBtnClick = false;
+
+            detailDiv = customerDiv + journeyDiv + bagDiv;
+
+            // div 추가 삭제 
+            $('#chgBtn').click(function(){
+                if(!chkBtnClick){
+                    customerInfoObj.appendDiv('detailForm', 'innerDetailForm', detailDiv);
+                    chkBtnClick = true;
+                    console.log('생성');
+                } else {
+                    customerInfoObj.removeDiv('innerDetailForm');
+                    chkBtnClick = false;
+                    console.log('파괴');
+                }
+            });
+
+            // 특정 table row 삭제
+            $('#destroyBtn').click(function(){
+                $('#journey2').remove();
+                $('#journey3').remove();
+            })
+        });
+    </script>
+</head>
+<body>
+    <input id="chgBtn" type="button" value="폼 변환기">
+    <input id="destroyBtn" type="button" value="특정 컬럼 파괴">
+    <form id="detailForm"></form>
+</body>
+</html>
