@@ -196,6 +196,13 @@
                 return bDiv;
             });
         })();
+
+        var destroy = function(){
+            $('#destroyBtn').click(function(){
+                $('#journey2').remove();
+                $('#journey3').remove();
+            }); 
+        };
             
        
 
@@ -226,13 +233,19 @@
             $('#destroyBtn').click(function(){
                 $('#journey2').remove();
                 $('#journey3').remove();
-            })
+            }); 
+
+            var url = "https://awsdc-s3-pss-dev-damagebaggage.s3.ap-northeast-2.amazonaws.com/";
+            var imgName = "25ca761656ff4473b594f476b0f19092.png";
+            img1.src = url + imgName;
         });
     </script>
 </head>
 <body>
     <input id="chgBtn" type="button" value="폼 변환기">
     <input id="destroyBtn" type="button" value="특정 컬럼 파괴">
+    <!-- <span id="destroyBtn"><a href="javascript:destroy();">저장</a></span> -->
     <form id="detailForm"></form>
+    <img id="img1" src="">
 </body>
 </html>
