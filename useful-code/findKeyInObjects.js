@@ -154,3 +154,32 @@ contactObj.modifyList(modifyObj, chgData);
 }
 });
 
+
+
+// 방법2
+// 두 오브젝트가 같은지를 체크
+let chkObjectsEqual = function(obj1, obj2){
+                
+    let chkEqual = false;
+    let equalCnt = 0;
+    const obj1_length = Object.keys(obj1).length;
+    const obj2_length = Object.keys(obj2).length;
+
+    if(obj1_length !== obj2_length){
+        return chkEqual = true;
+    }
+
+    // console.log('obj1_length: ', obj1_length, ' obj2_length: ', obj2_length);
+    for(key in obj1){
+        if(obj1[key] === obj2[key]){
+            equalCnt++;
+        }
+    }
+
+    // console.log('equalCnt:  ', equalCnt);
+    // 오브젝트들이 같은 횟수가 오브젝트 키 갯수와 동일하다면 두 오브젝트는 같음
+    if(equalCnt === obj1_length){
+        alert("변경사항이 없습니다.");
+        return chkEqual = false;
+    }
+};
