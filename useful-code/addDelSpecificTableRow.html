@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script>
+    // 테이블 특정 행 추가 함수
+    window.addRow = function(trId){
+            console.log('addRow excuted');
+            console.log('클릭된 버튼의 부모 trId: ', trId);
+            // 특정 테이블의 tr 태그 갯수 구하기
+            let cnt = $('#detailTbl tbody.addedTbody tr').length;
+            cnt = $('#detailTbl tbody.addedTbody tr').length + 1;
+            console.log('row가 추가된 이후의 갯수는: ' + cnt);
+            // 추가할 테이블 td
+            let tdTag = 
+                '<tr id=addedTr_' + cnt + '>' +
+                '    <td colspan="3">' +
+                '        <input type="text" id=dAirport_' + cnt + ' name="" value="" placeholder="출발공항">' +
+                '        <input type="text" id=aAirport_' + cnt + ' name="" value="" placeholder="도착공항">' +
+                '        <!-- TODO +, - button -->' +
+                '        <button type="button" class="grid-row-insert-btn" onclick="addRow($(this).closest(\'tr\').attr(\'id\')); return false;">+</button>' +
+                '        <button type="button" class="grid-row-del-btn" onclick="delRow($(this).closest(\'tr\').attr(\'id\')); return false;">-</button>' +
+                '    </td>' +
+                '</tr>';
+            
+            // rowspan의 갯수 추가
+            $('#detailTbl tbody.addedTbody th.rowspanCnt').attr('rowspan', cnt);
+            $('#detailTbl tbody.addedTbody').append(tdTag);
+    }
+
+    // 테이블 특정 행 삭제 함수
+    window.delRow = function(trId){
+        console.log('delRow excuted');
+        // 특정 테이블의 tr 태그 갯수 구하기
+        let cnt = $('#detailTbl tbody.addedTbody tr').length;
+        if(cnt > 0){
+            cnt = $('#detailTbl tbody.addedTbody tr').length - 1;    
+        } else {
+            console.log('--------------------- 행 갯수가 1이라 삭제할 수 없습니다. ---------------------');
+            return;
+        }
+
+        if(trId === "addedTr_1") {
+            console.log('--------------------- 첫번째 행은 삭제할 수 없습니다. ---------------------');
+            return;
+        }
+        console.log('row가 삭제된 이후의 갯수는: ' + cnt);
+
+        // 본격 삭제 함수 시작
+        // 클릭된 tr의 id
+        console.log('클릭된 버튼의 부모 trId: ', trId);
+        $('#'+trId).remove();
+    }
+
+    // 저장
+    $("#saveBtn").bind("click", function() {
+        const data = $('#detailForm').serializeObject();
+        console.log('저장할 데이터: ', data);
+    });
+
+</script>
+<body>
+    <div class="section">
+        <h3>Detail</h3><br><br>
+        <div class="sub-btn-right-t">
+            <span class="btn-control"><a id="saveBtn" href="#">저장</a></span>
+            <span class="btn-control"><a id="newBtn" href="#">신규</a></span>
+        </div>
+        <form id="detailForm">
+            <input type="hidden" id="" name="" value="">
+            <input type="hidden" id="" name="" value="">
+            <div class="table-box">
+				<table id="detailTbl" class="tbl-List">
+                    <tbody class="addedTbody">
+                        <tr id="addedTr_1">
+                            <th scope="row" rowspan="" class="rowspanCnt"><label for="">*적용노선</label></th>
+                            <td id="addedTd" colspan="3">
+                                <input type="text" id="dAirport_1" name="" value="" placeholder="출발공항">
+                                <input type="text" id="aAirport_1" name="" value="" placeholder="도착공항">
+                                <!-- TODO +, - button -->
+                                <button class="grid-row-insert-btn" onclick="addRow($(this).closest('tr').attr('id')); return false;">+</button>
+                                <button class="grid-row-del-btn" onclick="delRow($(this).closest('tr').attr('id')); return false;">-</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                            <tr>
+                                <th><label for="">아무실릭트</label></th>
+                                <td>
+                                    <select name="" id="">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </td>
+                            </tr>
+                </table>
+            </div>
+		</form>
+    </div>
+</body>
+</html>
