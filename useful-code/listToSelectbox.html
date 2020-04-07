@@ -1,0 +1,117 @@
+<!-- ajax에서 받은 리스트 데이터를 실릭트 박스에 넣어주는 로직 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script>
+   // 안내문구 리스트를 받아온다
+    let getInfoList = function(name, selectId){
+        let url = '';
+        if(name == 'seat'){
+            url = '/kal/ibe/extraservice/getSeatList.json';
+        }else if(name == 'baby'){
+            url = '/kal/ibe/extraservice/getBabyList.json';
+        }else if(name == 'chair'){
+            url = '/kal/ibe/extraservice/getChairList.json';
+        }else if(name == 'food'){
+            url = '/kal/ibe/extraservice/getFoodList.json';
+        }else if(name == 'pet'){
+            url = '/kal/ibe/extraservice/getPetList.json';
+        }
+        $.ajax({
+            url		: ctx + url,
+            dataType: 'json',
+            type   	: 'POST',
+            success	: function(data, textStatus, jqXHR){
+                objToArr(data, selectId);
+            }
+        });
+    }
+
+    // 받아온 리스트를 실릭트 박스에 넣어준다
+    let getSelectList = function(idx, text, selectId){
+    if(idx.length != text.length){
+        alert('Data error');
+        return;
+    }
+    if(idx.length == 0){
+        $('#'+selectId).append('<option>empty</option>');
+    } else {
+        for(let i=0; i<idx.length; i++){
+            $('#'+selectId).append('<option value='+idx[i]+'>'+text[i]+'</option>');
+        }
+    }
+    if($('#'+selectId+' option:eq(0)').val() != ''){
+        $('#'+selectId+' option:eq(0)').prop('selected', true);
+    }
+    };
+
+    // object to array
+    let objToArr = function(obj, selectId){
+        let idx = obj['T_ID'];
+        let text = obj['D_NM'];
+        getSelectList(idx, text, selectId);
+    };
+
+    $(function(){
+        getInfoList('seat', 'DEATIL_SEAT');
+        getInfoList('baby', 'DEATIL_BABY_BED');
+        getInfoList('chair', 'DEATIL_BATHCHAIR');
+        getInfoList('food', 'DEATIL_S_FOOD');
+        getInfoList('pet', 'DEATIL_PET');
+    });
+
+</script>
+<body>
+    <div class="section-left">
+        <div class="section section-up"><!-- 좌우 내용이 있는 경우 좌측 section과 더블어 section-up을 추가해 주세요. 좌우 밸러스를 맞추기 위함힙니다. -->
+            <h2>- 안내문구</h2>
+            <!-- table 영역 -->
+            <div class="table-box">
+                <table class="tbl-Form" summary=""> 
+                    <caption>안내문구</caption>
+                    <colgroup><col width="110px"/><col width="*"/></colgroup>
+                    <tr>
+                        <th class="left" scope="row"><label for="">구분</label></th>
+                        <td><span>계약현황</span></td>
+                    </tr>
+                    <tr>
+                        <th class="left" scope="row"><label for="">사전좌석배정</label></th>
+                        <td>
+                            <select name="DEATIL_SEAT" id="DEATIL_SEAT"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="left" scope="row"><label for="">유아용 요람</label></th>
+                        <td>
+                            <select name="DEATIL_BABY_BED" id="DEATIL_BABY_BED"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="left" scope="row"><label for="">휠체어</label></th>
+                        <td>
+                            <select name="DEATIL_BATHCHAIR" id="DEATIL_BATHCHAIR"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="left" scope="row"><label for="">특별기내식</label></th>
+                        <td>
+                            <select name="DEATIL_S_FOOD" id="DEATIL_S_FOOD"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="left" scope="row"><label for="">반려동물</label></th>
+                        <td>
+                            <select name="DEATIL_PET" id="DEATIL_PET"></select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
