@@ -97,4 +97,34 @@
          1. 외부에 아무런 영향을 미치지 않는 함수
       2. 고계 함수(Higher-order function)
          1. 함수를 또 하나의 값으로 간주하여 함수의 인자 혹은 반환값으로 사용할 수 있는 함수
+6. 기타
+   1. BABEL
+      1. ECMA Script의 최신 버전을 쓰고 배포할 때 이 전 버전으로 translate해주는 transcompiler
+   2. DOM(Document Object Model)
+      1. 웹개발의 3요소
+         1. HTML
+         2. CSS
+         3. JavaScript
+      2. 이 3개가 어떻게 웹 페이지에 보이는가를 생각해본다면 DOM의 역할을 유추해 볼 수 있다.
+      3. DOM은 HTML, CSS, JS를 객체화하여 웹페이지에 보여줄 수 있는 interface다. 실제 DOM의 객체 구조를 보면 ``Document - HTML - head - title - Title Name`` 이런 식이다.
+   3. Virtual DOM
+      1. [브라우저는 어떻게 동작하는가?](https://d2.naver.com/helloworld/59361)
+      2. [React and the Virtual DOM](https://www.youtube.com/watch?v=BYbgopx44vo)
+         1. 기존의 방식은 javascript 또는 jquery를 통해 수천가지의 노드 중에 변경 값을 찾기 위해 불필요한 연산이 많이 든다.
+         2. 하지만 Virtual DOM은 DOM API를 직접 사용하지 않고, 메모리에 있는 domNode 객체를 활용하기 때문에 훨씬 더 빠르다.(객체의 key-value로 연결이 되어있기 때문에 ``O(1)``)
+   4. 왜 우리는 더이상 ``jQuery``를 쓸 필요가 없는가?
+      1. jQuery was great but jQuery is old! the web is different now
+      2. What is jQuery
+         1. AJAX
+            1. XMLHttpRequest is standard(Fetch is bulit-in)
+         2. DOM manipulation
+         3. event handling
+         4. animation
+      3. Size가 너무 크다.(모듈화가 안되기 때문에 필요한 기능만 갖다 쓸 수 없다.)
+      4. jQuery가 큰 호응을 얻었던 이유는 당시 브라우저 간(explorer, netscape 등) 호환이 안되는 ``Issue``가 있었기 때문에 개발된 API이기 때문이다.
+         1. 지금은 ECMAScript5,6가 나오면서 호환이 가능
+            1. BEBEL과 같은 transformation tools
+            2. Vanilla JavaScript
+            3. youmightnotneedjquery.com에 가보면 jquery의 많은 기능들을 대체할 수 있는 light function들이 있다.
+      5. 하지만, jQuery는 여전히 사용하기 편하기 때문에 간단한 프로젝트에서 사용하면 좋다.
 
