@@ -132,3 +132,16 @@
         2.  Asynchronous callback
     4.  Callback Hell
         1.  callback하고 callback하고,,,,
+        2.  callback chain이 길어질수록 에러를 찾기 힘들고 유지보수가 힘들어진다.
+11. Promise
+    1.  비동기를 간편하게 처리할 수 있도록 제공해주는 Object
+    2.  성공하면 success, 실패하면 error를 전달
+    3.  promise를 만들면 바로 promise안의 code block이 실행된다.
+    4.  State
+        1.  pending -> fulfilled or rejected
+    5.  Producer and Consumer
+        1.  Producer
+12. Async and Await
+    1.  promise를 더 깔끔한 스타일로
+        1.  상황에 따라 promise, async 사용
+    2.  promise도 너무 중첩하면 callback hell
