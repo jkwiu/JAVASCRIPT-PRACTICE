@@ -1,11 +1,11 @@
 'use strict';
 
-class Person{
-  constructor(name, age){
+class Person {
+  constructor(name, age) {
     this._name = name;
     this._age = age;
   }
-  speak(){
+  speak() {
     console.log(`${this._name}: hello!`);
   }
 }
@@ -14,17 +14,17 @@ const jk = new Person('jk', 35);
 jk.speak();
 
 // getter amd setter
-class User{
+class User {
   constructor(firstName, lastName, age) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
   }
-  get age(){
+  get age() {
     return this._age;
   }
-  set age(value){
-     this._age = value < 0 ? 0 : value;
+  set age(value) {
+    this._age = value < 0 ? 0 : value;
   }
 }
 
@@ -32,31 +32,31 @@ const user1 = new User('Steve', 'Job', -1);
 console.log(user1.age);
 
 // Inheritance
-class Shape{
+class Shape {
   constructor(width, height, color) {
     this.width = width;
     this.height = height;
     this.color = color;
   }
 
-  draw(){
+  draw() {
     console.log(`drawing ${this.color} color of`);
   }
-  getArea(){
+  getArea() {
     return this.width * this.height;
   }
 }
 
-class Rectangle extends Shape{}
-class Triangle extends Shape{
-  draw(){
+class Rectangle extends Shape {}
+class Triangle extends Shape {
+  draw() {
     super.draw();
     console.log('ㅅ');
   }
-  getArea(){
+  getArea() {
     return (this.width * this.height) / 2;
   }
-  toString(){
+  toString() {
     return `Triangle: color: ${this.color}`;
   }
 }

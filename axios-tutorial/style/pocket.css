@@ -1,0 +1,51 @@
+body {
+  width: 40rem;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+body input {
+  width: 60px;
+}
+
+.content {
+  width: 490px;
+  height: 209px;
+  margin-top: 10px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+}
+
+.name > p {
+  margin: 0px 20px 0px 10px;
+}
+
+.pokemon-name {
+  text-transform: capitalize;
+}
+
+.image {
+  display: flex;
+}
+
+.image img {
+  display: block;
+}
+
+.image img:nth-child(1) {
+  margin-left: 46px;
+}
+
+button {
+  margin: 10px 0 0 10px;
+  padding: 0.25rem 0.5rem;
+  background-color: white;
+  border-radius: 10px;
+  border-style: none;
+  border: 1px solid black;
+  cursor: pointer;
+}
+

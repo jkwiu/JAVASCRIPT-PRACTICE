@@ -1,0 +1,30 @@
+<!-- 출처:velog.io -->
+<html>
+  <head>
+    <title>Axios Tutorial</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/pocket.css">
+  </head>
+  <body>
+    <h1>Using Axios to get pocketmon Data</h1>
+    <div>
+      숫자를 입력해 주세요 : 
+      <input type="number" min="1" value="1" class="pokemon-input">
+      <button class="pokemon-button">포켓몬 찾기</button>
+    </div>
+    <div class="content">
+      <div class="name">
+        <p>포켓몬 이름: </p>
+        <mark class="pokemon-name"></mark>
+        <p>사용무기: </p>
+        <mark class="feature"></mark>
+      </div>
+      <div class="image">
+        <img class="poke-front-image">
+        <img class="poke-behind-image">
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
