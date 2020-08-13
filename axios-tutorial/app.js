@@ -1,3 +1,5 @@
+// const { default: Axios } = require('axios');
+
 var apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 var input = document.querySelector('.pokemon-input');
 var pokemonName = document.querySelector('.pokemon-name');
@@ -29,6 +31,25 @@ function getPokemonData() {
       weapon.innerHTML = '무기가 없습니다.';
     });
 }
+
+class data {
+  #_content;
+  constructor() {
+    this.#_content = '';
+  }
+
+  get content() {
+    return this.#_content;
+  }
+
+  set content(val) {
+    this.#_content = val;
+  }
+}
+
+const d = new data();
+d.content = 'jk';
+console.log(d.#_content);
 
 var button = document.querySelector('.pokemon-button');
 button.addEventListener('click', getPokemonData);
