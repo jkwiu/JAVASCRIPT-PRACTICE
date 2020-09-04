@@ -1,88 +1,37 @@
-
-
-@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700';
-
-
-@mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+thead,
+tfoot {
+    background-color: #3f87a6;
+    color: #fff;
 }
 
-
-
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
+tbody {
+    background-color: #e4f0f5;
 }
 
-html, body {
-  font-family: 'Open Sans', sans-serif;
-  padding: 0;
-  margin: 0;
+caption {
+    padding: 10px;
+    caption-side: bottom;
 }
 
-body {
-  background-color: #f6f6f6;
-  min-height: 100vh;
-  height: 100vh;
-  padding: 35px;
-  position: relative;
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    font-size: .8rem;
+    float: left;
 }
 
-a {
-  text-decoration: none;
-  color: inherit
+td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 5px 10px;
 }
 
-.body-blackout {
-  position: absolute;
-  z-index: 1010;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .65);
-  display: none;
-  
+td {
+    text-align: center;
 }
 
-.body-blackout.is-blacked-out {
-  display: block;
-}
-
-.popup-trigger {
-  display: inline-block;
-}
-
-.popup-modal {
-  height: 365px;
-  width: 650px;
-  background-color: #fff;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 45px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 300ms ease-in-out;
-  z-index: 1011;
-  
-}
-.popup-modal.is--visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.popup-modal__close {
-  position: absolute;
-  font-size: 1.2rem;
-  right: -10px;
-  top: -10px;
-  cursor: pointer;
+button {
+  float: bottom;
 }
